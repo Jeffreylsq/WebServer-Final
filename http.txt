@@ -1,0 +1,123 @@
+HTTP协议:超文本传输协议
+浏览器与服务端之间传输数据的协议，底层的传输协议为TCP。
+HTTP则为应用层协议，负责定义传输数据的格式。
+
+HTTP协议分为1.0与1.1两个版本。现在常用为1.1版本。
+
+协议规定客户端与服务端通讯方式为:一次请求一次响应
+即:客户端发起请求，服务端接收到请求后向客户端发送响应。
+服务端不会主动发送内容给客户端。采取"一问一答"的形式。
+
+HTTP对请求与响应分别定义了格式。并且，无论是请求还是
+响应中发送的字符(不含正文部分内容)都只能符合ISO8859-1
+编码字符(如:数字，字母，符号)。像中文等其他字符都需要
+经过处理后才可以发送。
+
+HTTP请求格式
+一个HTTP请求分为三部分组成:请求行，消息头，消息正文
+
+1:请求行
+请求行分为三部分:
+请求方法 资源路径 协议(CRLF)  
+method url protocol(CRLF)
+例如:
+GET /index.html HTTP/1.1(CRLF)
+
+请求行以CRLF结束
+CR:回车符,asc编码中对应数字13
+LF:换行符,asc编码中对应数字10
+
+
+2:消息头
+消息头由若干行表示，每行表示一个具体的头信息
+每个头信息格式分为两部分:
+消息头名字:消息头的值(CRLF)
+name:value(CRLF)
+每个消息头都以CRLF结尾。
+最后一个消息头结尾处会有两个CRLF，第一个表示最后一个
+消息头结束，第二个表示消息头部分结束。
+例如:
+Host: localhost:8080(CRLF)
+Connection: keep-alive(CRLF)
+Cache-Control: max-age=0(CRLF)
+Upgrade-Insecure-Requests: 1(CRLF)
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36(CRLF)
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8(CRLF)
+Accept-Encoding: gzip, deflate, sdch(CRLF)
+Accept-Language: zh-CN,zh;q=0.8(CRLF)(CRLF)
+
+
+3:消息正文
+正文部分不是必须部分，消息正文是2进制数据。是客户端
+在发送请求时发送给服务端客户提交的数据。这些数据可能
+是注册信息，上传的图片等。具体数据是什么类型以及这些
+2进制数据有多少字节会在消息头中具体说明。若消息头中
+没有说明消息正文内容则这个请求中是不含有正文的。
+
+
+下面是浏览器发送给服务端的一个请求(不含有正文部分)
+GET /index.html HTTP/1.1CRLF
+Host: localhost:8080
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: zh-CN,zh;q=0.8
+
+
+
+HTTP响应
+HTTP响应格式也分为三部分:状态行，响应头，响应正文
+
+状态行格式:
+protorol status-code status-reason
+协议版本 状态码 状态描述
+
+状态代码有五类:
+1xx:信息响应类，表示接受到请求并继续处理
+2xx:处理成功响应类,表示动作被成功接收兵处理
+3xx:重定向类，为了完成指定的动作，必须接受下一步处理
+4xx:客户端错误类，表示客户端请求包含错误的语法或不能
+        正确的执行
+5xx:服务端错误类，服务端不能正确的处理一个正确的请求。    
+常见的:
+200:一切正常
+302:服务端要求客户端重定向到指定路径
+404:用于请求资源未找到
+500:服务端处理异常
+
+
+响应头格式:
+响应头的格式与请求中的消息头格式一致。
+
+
+响应正文:
+响应正文也是二进制数据，用于将客户端请求的资源等
+信息发送回给客户端。该正文具体表示的介质类型以及占用
+的字节长度会在响应头中有所描述。
+
+
+一个HTTP响应大致内容:
+HTTP/1.1 200 OK(CRLF)
+Content-Type:text/html(CRLF)
+Content-Length:224586(CRLF)(CRLF)
+1101010101001.....2进制字节数据
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

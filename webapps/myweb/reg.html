@@ -1,0 +1,56 @@
+<html>
+
+<head>
+   <meta charset="UTF-8">
+   <title>User Sign Up</title>
+</head>
+<body>
+	<center>
+          
+		<h1>User Sign Up</h1>
+		
+		<!-- 
+		     页面中所有的输入框中用户输入的内容若想提交给服务端，那么这些输入框必须包含在form标签中
+		     才可以，
+		     form 是用来将其包含的所有输入域内容提交到指定路径的
+		     form 上由两个重要属性
+		     action: 用于指定表单提交的路径
+		     method：用来指定表单提交的方式（Get,Post)
+		     ./ 含义是当前所在路径
+		 -->
+		<form action = "./reg" method = "get">
+		<table border = "15">
+		       <tr>
+		               <td>User Name:</td>
+		                 <!-- 所有在form表单中的输入框，都必须要指定name属性，浏览器就是根据该属性的值
+		                 作为参数名，将该输入框的值作为参数值传递给服务端的，若不指定则会忽略这个输入框 -->
+		                <td><input name = "username" type = "text"></td>
+		        </tr>
+		        <tr>
+		                <td>Nick Name:</td>
+		                  <td><input name = "nickname" type = "text"></td>
+		        </tr>
+		        
+		        <tr>
+		                <td>Age:</td>
+		                 <td><input name = "age" type = "text"></td> 
+		        </tr>
+		        
+		        <tr>
+		                 <td >password:</td>
+		                  <td><input name = "password" type = "password"></td> 
+		        </tr>
+		        <tr>
+		                 <td align = "center" colspan = "2">
+		                    <input type = "submit" size = "20" value = "Enroll in">
+		                   </td>
+		        </tr>
+		          
+		</table>
+      
+        </form>
+	</center>
+
+</body>
+
+</html>
